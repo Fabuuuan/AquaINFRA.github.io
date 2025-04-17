@@ -14,7 +14,9 @@ Based on a reproducible basis (code + data + computational environment), further
 
 Users who have an analysis pipeline and would like to create a D2K-Package out of it.
 
-### What is a Data-to-Knowledge Package?
+---
+
+## What is a Data-to-Knowledge Package?
 
 The Data-to-Knowledge Package (D2K-Package) is a framework designed to enhance the reusability of computational research outputs by integrating key digital research assets. It addresses challenges in reproducibility by linking essential components, including data, code, virtual labs, web API services, and computational workflows. Unlike traditional research compendiums, the D2K-Package does not duplicate data but instead provides structured links to existing resources, reducing redundancy and ensuring synchronization.
 

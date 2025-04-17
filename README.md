@@ -147,11 +147,67 @@ Python and json files defining the processes.
 tbc
 
 #### To-do:
-Get a server that meets the server requirements mentioned above.
-Install pygeoapi.
-Create and upload the python and json files defining the process.
+- [x] Get a server that meets the server requirements mentioned above.
+- [x] Install pygeoapi.
+- [x] Create and upload the python and json files defining the process.
+
+### Step 5: Producing a workflow
+
+#### AquaINFRA users:
+You’re in a lucky position because we already have a server for your OGC API Processes and a Galaxy tool that you just need to update with your contribution.
+
+1. Clone the [OGC-API-Process2Galaxy](https://github.com/AquaINFRA/OGC-API-Process2Galaxy) tool to your local computer and switch to the branch aquainfra_processes. There you will find an aqua.json file which is the configuration file and already includes the link to the server running the OGC API Processes. Open it and add only those input parameters to input_data_params that take a dataset and not just a parameter value. Then, run the tool using python3 OGCProcess2Galaxy.py aqua.json and check the resulting generic.xml. You should now find your processes there in the select_process parameter for the dropdown menu in the final tool plus the corresponding input parameters in one of the <when> objects below. **Note:** A Galaxy tool XML can be very individual. Hence, the OGC-API-Process2Galaxy tool can only provide a scaffold that you can use as a basis but will likely need to make some adjustments. For example, the tool cannot generate tests or input validators, both need to be created manually.
+2. Run a [local Galaxy instance](https://galaxyproject.org/admin/get-galaxy/) and test your tool there. Alternatively, use our [AquaINFRA Galaxy instance](https://github.com/AquaINFRA/galaxy/tree/aquainfra_ogc) for local testing. See also [this commit](http://tools/ogc_services/generic.R) where a process was added to the XML file in Galaxy.
+3. If it works as expected, create a fork from or branch in [https://github.com/AquaINFRA/tools-ecology](https://github.com/AquaINFRA/tools-ecology). Go to the file tools-ecology/tools/aquainfra_ogc_api_processes/aquainfra_ogc_api_processes.xml and update the xml file with your contribution. Increase the version (number in the middle) of the tool, e.g., from 0.3.0 to 0.4.0. Then, make a Pull Request from your tools-ecology branch/fork to [https://github.com/AquaINFRA/tools-ecology](https://github.com/AquaINFRA/tools-ecology)
+4. Once the Pull Request gets accepted, either by you if you have the power or by one of the AquaINFRA members, you can make a Pull Request to [https://github.com/galaxyecology/tools-ecology](https://github.com/galaxyecology/tools-ecology).
+5. From here, the Galaxy team will overtake and review the updated tool. Most likely, they will come up with some recommendations. If they agree, the tool will be deployed on the Galaxy platform and become available next saturday.
+
+### Step 6: Developing a D2K-Package
+
+Creating the D2K-Package is a simple step as you only need to create one file, add the links to the D2K-Package components, and publish it on Zenodo. We recommend using the tool [Describo](https://describo.github.io/), a metadata editor for creating linked research objects, but you can also use a simple text editor. As a starting point, you can copy the example D2K-Package file ro-crate-metadata.json and use it as a D2K-Package template. Keep the name “ro-crate-metadata.json” and store it somewhere locally on your computer. The file describes a D2K-Package composed of two input datasets, one toolbox, one virtual lab, one web API service, and one workflow. If you have a similar setup, you only need to change the URLs to the components and the metadata in the file. If you have more or less input datasets (or toolboxes or other D2K-Package components), just add or remove them accordingly.
+
+Once you’re done with creating the D2K-Package file, you need to publish it on Zenodo. When checking the ro-crate file, you might have noticed that it contains a DOI to the Zenodo record containing the ro-crate file. This can be accomplished by [reserving a DOI](https://help.zenodo.org/docs/deposit/describe-records/reserve-doi/) before publishing the record. Just copy the reserved DOI to the [ro-crate file](https://www.researchobject.org/ro-crate/) and then upload the file to the record. Fill the other metadata (title, authors, descriptions etc.). We recommend adding a few instructions to the description on how to use the D2K-Package, such as how to run the workflow. If you want to make your D2K-Package findable via the [AquaINFRA Interaction Platform](https://aquainfra.dev.52north.org/) (particularly relevant for members of the AquaINFRA project!), you need to add the keyword “Data-to-Knowledge Package” to your record. 
+
+A D2K-Package must link to at least one toolbox but can also reference toolboxes developed by others if their functions are reused. If a D2K-Package simply reuses existing functions in a new way, creating a new toolbox is unnecessary—links to existing toolboxes suffice. This means a single toolbox can be associated with multiple D2K-Packages.
+
+#### To-do:
+- [x] Create a “ro-crate-metadata.json” file.
+- [x] Add links to input datasets, toolbox, virtual lab, web API service, and workflow to the ro-crate file.
+- [x] Publish file on Zenodo.
+
+Updating a D2K-Package
+The finalized and published D2K-Package can be updated for various reasons. For some, the effort is minimal, whereas others require fundamental changes to various components. For some, it does make sense to update existing and published D2K-Package, whereas others require the creation of a new D2K-Package, which is way less time-consuming than the first one! Possible scenarios and the required change steps are described below. In Any case it is recommended to treat the D2K-Package like a scientific record. For instance, you would probably not want to update a published paper or dataset too often.  
+
+**1. You want to change the metadata of the repository including the D2K-Package file** 
+Let’s say you want to update the description of the Zenodo record containing the D2K-Package file. This is not a problem and can just be done as this does not affect any of the D2K-Package components. 
+
+**2. You want to change the metadata in the D2K-Package file**
+You can do so by changing the ro-crate-metadata.json file. This means that you will need to create a new version of the Zenodo record with the updated json file resulting in a new DOI. The old DOI will still redirect to the corresponding version. Users following the old DOI easily also find the new one on Zenodo.
+
+**3. You published a paper, poster, talk or similar and would like to add it to the D2K-Package**
+You can do so by changing the ro-crate-metadata.json file and adding another component as you did already with the other D2K-Package components. Tools like Describo can make your work easier and don’t forget to look up the right resource type for your new component (see Step 6). You will need to create a new version of the Zenodo record with the updated json file resulting in a new DOI. The old DOI will still redirect to the corresponding version. Users following the old DOI easily also find the new one on Zenodo.
+
+**4.The URL to the dataset has changed**
+All you need to change is the corresponding URL in the ro-crate-metadata.json file. This means that you will need to create a new version of the Zenodo record with the updated json file resulting in a new DOI. The old DOI will still redirect to the corresponding version. Users following the old DOI easily also find the new one on Zenodo. However, changing the URL of the dataset should be avoided as much as possible to avoid confusion and effort.    
+
+**5. You want to change the input parameters of a function in the toolbox**
+
+**6. You found a bug in the code**
+
+**7. You want to add a function to the toolbox and use it in the workflow**
+
+**8. You want to change the library versions in the toolboxes computational environment**
+
+**9. You want to update the pygeoapi server (server URL does not change)**
+Assuming that the update does not affect the URLs to the server, the processes, the process descriptions, jobs, or results, you will not run into trouble. If you need to make changes to the python scripts that act as wrappers, you can make these changes without touching the Galaxy resources. However, it is strongly recommended to verify that the workflow still works and produces the expected results.  
+
+**10. You want to deploy the pygeoapi server elsewhere (server URL does change)**
+
+**11. Your server hosting pygeoapi is down**
+
+**12. Your Galaxy subdomain is down (e.g., aqua.usegalaxy.eu)**
 
 
-
+Let’s assume the Galaxy subdomain [https://aqua.usegalaxy.eu/](https://aqua.usegalaxy.eu/) is down. This is not a problem because, as the name suggests, it is just a subdomain of [https://usegalaxy.eu/](https://usegalaxy.eu/), where the tools are still available. You can even make your tools available on other Galaxy instances, such as [https://usegalaxy.org/](https://usegalaxy.org/). In such cases or if you have doubts, please consult the Galaxy documentation or contact one of the Galaxy maintainers. AquaINFRA users can first contact Markus Konkol [(m.konkol@52north.org)](m.konkol@52north.org).
 
 

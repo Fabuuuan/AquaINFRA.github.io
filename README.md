@@ -78,7 +78,6 @@ Option 2: If the license permits, upload the data to a repository, such as Zenod
 
 
 ---
-
 ### Step 2: Preparing the toolbox
 
 
@@ -120,6 +119,7 @@ daugava-workflow-image -- "URL to input dataset_1" "URL to input dataset_2"
 - [x] Adapt the Dockerfile if needed.
 - [x] Publish the toolbox on Zenodo to get a DOI (see [GitHub → Zenodo integration](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content)).
 
+---
 ### Step 3: Creating to a virtual lab
 If you successfully managed to create a Toolbox as described in Step 2, you can easily create a virtual lab. Copy the URL of the repository and paste it to the input field of the MyBinder web application. You can also specify the branch or commit if necessary. Based on this information, MyBinder creates a Dockerfile (not the same as the one in the toolbox), builds the image, and launches the container where users can engage with the code more deeply in a ready-to-use virtual lab providing the corresponding programming environment (in this case RStudio). The resulting Binder can be accessed and shared via a URL with other users and thus become part of a D2K-Package. For more detailed instructions on using the Binder service, visit their excellent [how-to guide](https://mybinder.readthedocs.io/en/latest/howto/index.html) and [get-started introduction](https://mybinder.readthedocs.io/en/latest/introduction.html).
 
@@ -131,6 +131,7 @@ If you successfully managed to create a Toolbox as described in Step 2, you can 
 - [x] Copy the repository URL and paste it to the MyBinder UI.
 - [x] Copy the resulting MyBinder URL and add a badge to your repository.
 
+---
 ### Step 4: Providing a web API service
 A web API service allows users to send requests to that service and receive a response via HTTP. Based on this request-response mechanism (also known as client-server communication), the developer of a D2K-Package can expose the functions in a toolbox by setting up a server and deploying a web API service. The concept of a toolbox can be seamlessly integrated into this mechanism since its functions are encapsulated, containerized, and well-defined regarding input and output. The web API service acts as a wrapper that enables immediate reuse of a toolbox function. The wrapper takes the input information sent by the user (i.e., data, parameter configuration), executes the function, and outputs the result as part of the response for further processing in the user’s source code. To achieve that, the wrapper transforms the information in the request (i.e., input data, parameter configuration) into a docker command that runs the container and the corresponding function in that container. Every function in the toolbox is wrapped in such a way and has a dedicated endpoint (OGC API Process) that can be reached via a URL and is in charge for running the container. As a result, users can develop their analysis script and include HTTP requests to that web API service including the necessary input information. The output of the executed function (a link to a table or a figure) can then be sent back as part of the response for further use in the code. Here, we also see a key advantage of passing URLs to datasets instead of sending the actual dataset: The data is often too large to be sent around between processes. A D2K-Package links to such a web API service provided by the developer of the D2K-Package.
 [Pygeoapi](https://pygeoapi.io/) provides a guide to deploy an OGC API service. 
@@ -151,6 +152,8 @@ tbc
 - [x] Install pygeoapi.
 - [x] Create and upload the python and json files defining the process.
 
+
+---
 ### Step 5: Producing a workflow
 
 #### AquaINFRA users:
@@ -162,6 +165,8 @@ You’re in a lucky position because we already have a server for your OGC API P
 4. Once the Pull Request gets accepted, either by you if you have the power or by one of the AquaINFRA members, you can make a Pull Request to [https://github.com/galaxyecology/tools-ecology](https://github.com/galaxyecology/tools-ecology).
 5. From here, the Galaxy team will overtake and review the updated tool. Most likely, they will come up with some recommendations. If they agree, the tool will be deployed on the Galaxy platform and become available next saturday.
 
+
+---
 ### Step 6: Developing a D2K-Package
 
 Creating the D2K-Package is a simple step as you only need to create one file, add the links to the D2K-Package components, and publish it on Zenodo. We recommend using the tool [Describo](https://describo.github.io/), a metadata editor for creating linked research objects, but you can also use a simple text editor. As a starting point, you can copy the example D2K-Package file ro-crate-metadata.json and use it as a D2K-Package template. Keep the name “ro-crate-metadata.json” and store it somewhere locally on your computer. The file describes a D2K-Package composed of two input datasets, one toolbox, one virtual lab, one web API service, and one workflow. If you have a similar setup, you only need to change the URLs to the components and the metadata in the file. If you have more or less input datasets (or toolboxes or other D2K-Package components), just add or remove them accordingly.
@@ -175,7 +180,9 @@ A D2K-Package must link to at least one toolbox but can also reference toolboxes
 - [x] Add links to input datasets, toolbox, virtual lab, web API service, and workflow to the ro-crate file.
 - [x] Publish file on Zenodo.
 
-Updating a D2K-Package
+
+---
+### Updating a D2K-Package
 The finalized and published D2K-Package can be updated for various reasons. For some, the effort is minimal, whereas others require fundamental changes to various components. For some, it does make sense to update existing and published D2K-Package, whereas others require the creation of a new D2K-Package, which is way less time-consuming than the first one! Possible scenarios and the required change steps are described below. In Any case it is recommended to treat the D2K-Package like a scientific record. For instance, you would probably not want to update a published paper or dataset too often.  
 
 **1. You want to change the metadata of the repository including the D2K-Package file** 

@@ -1,3 +1,6 @@
+![Test](relative%20path/to/img.jpg?raw=true "Title")
+
+
 # User Guide: Creating a Data-to-Knowledge Package
 
 **Note:** This document is a draft. Please send your questions, comments, and suggestions to m.konkol[at]52north.org.

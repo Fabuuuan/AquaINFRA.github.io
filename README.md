@@ -1,4 +1,4 @@
-![Test](Screenshot 2025-04-22 at 10.15.49.png "Test")
+![Test](IMG/Screenshot 2025-04-22 at 10.15.49.png)
 
 
 # User Guide: Creating a Data-to-Knowledge Package

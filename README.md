@@ -1,8 +1,3 @@
-
-
-![](https://github.com/Fabuuuan/AquaINFRA.github.io/blob/22643639091a259cb666f8bc7f03cc616becd588/IMG/Screenshot%202025-04-22%20at%2010.15.49.png)
-
-
 # User Guide: Creating a Data-to-Knowledge Package
 
 **Note:** This document is a draft. Please send your questions, comments, and suggestions to m.konkol[at]52north.org.

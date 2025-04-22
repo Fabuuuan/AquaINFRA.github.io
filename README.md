@@ -1,4 +1,6 @@
-![](IMG/Screenshot 2025-04-22 at 10.15.49.png)
+
+
+![](Single_Learning_Element/Img/Zeitstrahl/Zeitstrahl.png)
 
 
 # User Guide: Creating a Data-to-Knowledge Package
@@ -18,6 +20,7 @@ Based on a reproducible basis (code + data + computational environment), further
 Users who have an analysis pipeline and would like to create a D2K-Package out of it.
 
 ---
+
 
 ## What is a Data-to-Knowledge Package?
 

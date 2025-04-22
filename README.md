@@ -1,4 +1,4 @@
-![Test](relative%20path/to/img.jpg?raw=true "Title")
+![Test](Screenshot 2025-04-22 at 10.15.49.png "Test")
 
 
 # User Guide: Creating a Data-to-Knowledge Package
